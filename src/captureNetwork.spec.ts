@@ -1,6 +1,9 @@
 import puppeteer, { Browser } from "puppeteer"
 import { captureNetwork } from "./captureNetwork"
 
+// TODO: something's going on here where the first execution
+// doesn't terminate and Jest gets mad
+// probably has to do with the way 'browser' is created/closed
 describe("captureNetwork", () => {
   let browser: Browser | void
 
