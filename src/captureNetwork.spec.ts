@@ -4,12 +4,18 @@ import { captureNetwork } from "./captureNetwork"
 // TODO: something's going on here where the first execution
 // doesn't terminate and Jest gets mad
 // probably has to do with the way 'browser' is created/closed
+
+const defaultPuppeteerBrowserOptions = {
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--ignore-certificate-errors', '--autoplay-policy=no-user-gesture-required'],
+    defaultViewport: null,
+    headless: true
+};
 describe("captureNetwork", () => {
   let browser: Browser | void
 
   const getBrowser = async () => {
     if (browser == null) {
-      browser = await puppeteer.launch()
+      browser = await puppeteer.launch(defaultPuppeteerBrowserOptions)
     }
 
     return browser
