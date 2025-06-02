@@ -168,8 +168,10 @@ export default {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  transform: {
-    "^.+\\.ts?$": "ts-jest",
+ transform: {
+    '^.+\\.(ts|js)$': ['ts-jest', {
+      isolatedModules: true,
+    }]
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
