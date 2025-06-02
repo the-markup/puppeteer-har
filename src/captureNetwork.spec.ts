@@ -1,5 +1,8 @@
+import fs from 'fs'
+import { promisify } from 'util';
 import puppeteer, { Browser } from "puppeteer"
 import { captureNetwork } from "./captureNetwork"
+import { Har } from "har-format";
 
 // TODO: something's going on here where the first execution
 // doesn't terminate and Jest gets mad
@@ -34,14 +37,38 @@ describe("captureNetwork", () => {
 
     await page.goto("https://www.google.com")
 
-    const har = await getHar()
+    const har = await getHar() as Har
 
     const entry = har.log.entries.find(({ request }) => {
       return (
         request.method === "GET" && request.url === "https://www.google.com/"
       )
     })
-
     expect(entry?.response.content).not.toHaveProperty("text", undefined)
   })
+
+  it("should save output to folder when input", async () => {
+    const fileName = 'output.json'
+    const page = await getPage()
+
+    const getHar = await captureNetwork(page, { saveResponses: true })
+
+    await page.goto("https://www.google.com")
+
+    await getHar(fileName)
+
+    expect(fs.existsSync(fileName))
+
+    const fileContents = await promisify(fs.readFile)(fileName)
+    const har = JSON.parse(fileContents.toString()) as Har
+    const entry = har.log.entries.find(({ request }) => {
+      return (
+        request.method === "GET" && request.url === "https://www.google.com/"
+      )
+    })
+    expect(entry?.response.content).not.toHaveProperty("text", undefined)
+  
+    // clean up
+    await promisify(fs.rm)(fileName)
+  });
 })

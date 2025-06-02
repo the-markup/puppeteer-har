@@ -1,8 +1,10 @@
+import * as fs from 'fs';
 import { harFromMessages } from "chrome-har"
 import { Page } from "puppeteer"
 import { Har } from "har-format"
 import { observeEvents } from "./observeEvents"
 import { captureResponses } from "./captureResponses"
+import { promisify } from 'util';
 
 const pageEventsToObserve = [
   "Page.loadEventFired",
@@ -27,7 +29,7 @@ type CaptureOptions = {
   captureMimeTypes?: string[]
 }
 
-type StopFn = () => Promise<Har>
+type StopFn = (output?: string) => Promise<any>
 
 export async function captureNetwork(
   page: Page,
@@ -51,7 +53,7 @@ export async function captureNetwork(
     saveResponses,
   })
 
-  return async function getHar(): Promise<Har> {
+  return async function getHar(output?:string): Promise<any> {
     const pageEvents = await stopPageEventCapturing()
     const networkEvents = await stopRequestCapturing(
       await stopNetworkEventCapturing()
@@ -59,8 +61,15 @@ export async function captureNetwork(
 
     await client.detach()
 
-    return harFromMessages([...pageEvents, ...networkEvents], {
+    const har = harFromMessages([...pageEvents, ...networkEvents], {
       includeTextFromResponseBody: saveResponses,
     })
+
+    if (output) {
+      await promisify(fs.writeFile)(output, JSON.stringify(har))
+      return Promise.resolve()
+    } else {
+      return har
+    }
   }
 }
