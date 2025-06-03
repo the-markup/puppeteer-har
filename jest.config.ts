@@ -93,7 +93,7 @@ export default {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -168,17 +168,20 @@ export default {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
- transform: {
-    '^.+\\.(ts|js)$': ['ts-jest', {
-      isolatedModules: true,
-    }]
+  transform: {
+    '^.+\\.[tj]s$': [
+      'ts-jest',
+      {
+        tsconfig: '<rootDir>/tsconfig.json'
+      }
+    ]
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  transformIgnorePatterns: [
+    '/node_modules/(?!chrome-har)',
+    "\\.pnp\\.[^\\/]+$",
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
