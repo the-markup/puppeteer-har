@@ -93,7 +93,7 @@ export default {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: 'ts-jest',
+  // preset: undefined,
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -178,10 +178,12 @@ export default {
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: [
-    '/node_modules/(?!chrome-har)',
-    "\\.pnp\\.[^\\/]+$",
-  ],
+  // 06-2025, MPH, if in the future you have to use the ES6 version of chrome-har,
+  // this config may help get around the resultant jest issues (jest doesn't like ES6)
+  // transformIgnorePatterns: [
+  //   '/node_modules/(?!chrome-har)',
+  //   "\\.pnp\\.[^\\/]+$",
+  // ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
