@@ -29,12 +29,7 @@ await browser.close()
 
 Start capturing the network traffic of the given puppeteer page.
 
-### Returns
-
-`captureHar` returns a method that will stop capturing traffic and return a HAR file when called.
-Pass a file name into `captureHar` to save the output of the Har file to that file. If not passed in, the function will return the Har JSON.
-
-### `options`
+### Options
 
 #### `saveResponses`
 
@@ -45,3 +40,14 @@ If set the HAR file will also include the responses to network requests.
 
 Defaults to `['text/html', 'application/json']`.
 When responses should be saved you can specify which response types to include through this array.
+
+### Returns
+
+`captureNetwork` returns a method that will stop capturing traffic and return a HAR file when called.
+
+#### `getHar()`
+
+##### arguments
+
+`fileName` (optional) - A string that is used as a filename for the generated HAR file. If provided, the HAR file will be saved to this location.
+If not passed in, the function will directly return the HAR JSON.
