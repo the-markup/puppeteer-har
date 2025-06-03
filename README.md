@@ -45,7 +45,7 @@ When responses should be saved you can specify which response types to include t
 
 `captureNetwork` returns a method that will stop capturing traffic and return a HAR file when called.
 
-#### `getHar`
+#### `getHar()`
 
 ##### arguments
 
