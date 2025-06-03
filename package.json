@@ -25,7 +25,7 @@
   "author": "The Markup",
   "license": "MIT",
   "dependencies": {
-    "chrome-har": "^1.0.1"
+    "chrome-har": "^0.13.5"
   },
   "peerDependencies": {
     "puppeteer": ">=1.0.0"
