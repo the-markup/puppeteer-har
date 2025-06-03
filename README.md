@@ -49,5 +49,5 @@ When responses should be saved you can specify which response types to include t
 
 ##### arguments
 
-`fileName` (optional) - A string that is used as a filename for the generated HAR file.
-If not passed in, the function will return the Har JSON.
+`fileName` (optional) - A string that is used as a filename for the generated HAR file. If provided, the HAR file will be saved to this location.
+If not passed in, the function will directly return the HAR JSON.
