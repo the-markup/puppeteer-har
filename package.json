@@ -1,6 +1,6 @@
 {
   "name": "@the-markup/puppeteer-har",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "Generate HAR file with Puppeteer",
   "main": "lib/index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
     "release": "semantic-release",
+    "version-beta": "git stash && standard-version --prerelease beta",
+    "version-major": "git stash && standard-version --release-as major",
+    "version-minor": "git stash && standard-version --release-as minor",
+    "version-patch": "git stash && standard-version --release-as patch",
     "test": "jest"
   },
   "repository": {
