@@ -70,6 +70,9 @@ export default {
   //   "node_modules"
   // ],
 
+  extensionsToTreatAsEsm: ['.ts'],
+  verbose: true,
+
   // An array of file extensions your modules use
   // moduleFileExtensions: [
   //   "js",
@@ -93,7 +96,7 @@ export default {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -169,21 +172,15 @@ export default {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.[tj]s$': [
-      'ts-jest',
-      {
-        tsconfig: '<rootDir>/tsconfig.json'
-      }
-    ]
+    '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // 06-2025, MPH, if in the future you have to use the ES6 version of chrome-har,
-  // this config may help get around the resultant jest issues (jest doesn't like ES6)
-  // transformIgnorePatterns: [
-  //   '/node_modules/(?!chrome-har)',
-  //   "\\.pnp\\.[^\\/]+$",
-  // ],
+  transformIgnorePatterns: [
+    '/node_modules/(?!chrome-har).+\\.js$',
+    "\\.pnp\\.[^\\/]+$",
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
