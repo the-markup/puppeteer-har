@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import { harFromMessages } from "chrome-har"
 import { Page } from "puppeteer"
-import { Har } from "har-format"
 import { observeEvents } from "./observeEvents"
 import { captureResponses } from "./captureResponses"
 import { promisify } from 'util';
