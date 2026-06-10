@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import { harFromMessages } from "chrome-har"
 import { Page } from "puppeteer"
-import { observeEvents } from "./observeEvents"
-import { captureResponses } from "./captureResponses"
+import { observeEvents } from "./observeEvents.js"
+import { captureResponses } from "./captureResponses.js"
 import { promisify } from 'util';
 
 const pageEventsToObserve = [

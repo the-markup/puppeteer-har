@@ -1,7 +1,8 @@
 import fs from 'fs'
+import {jest} from '@jest/globals'
 import { promisify } from 'util';
 import puppeteer, { Browser } from "puppeteer"
-import { captureNetwork } from "./captureNetwork"
+import { captureNetwork } from "./captureNetwork.js"
 import { Har } from "har-format";
 
 // TODO: something's going on here where the first execution

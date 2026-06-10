@@ -1,1 +1,1 @@
-export { captureNetwork } from "./captureNetwork"
+export { captureNetwork } from "./captureNetwork.js"
