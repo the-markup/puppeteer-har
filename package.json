@@ -1,6 +1,6 @@
 {
   "name": "@themarkup/puppeteer-har",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Generate HAR file with Puppeteer",
   "main": "lib/index.js",
   "scripts": {
