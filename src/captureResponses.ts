@@ -1,5 +1,5 @@
 import { CDPSession } from "puppeteer"
-import { ObserverResult } from "./observeEvents"
+import { ObserverResult } from "./observeEvents.js"
 
 type CaptureResponsesOptions = {
   captureMimeTypes: string[]

@@ -1,4 +1,4 @@
-import { CDPSession, ResponseForRequest } from "puppeteer"
+import { CDPSession, ResponseForRequest, Handler } from "puppeteer"
 
 type Params = {
   requestId?: string
@@ -17,7 +17,7 @@ export const observeEvents = (
   const results: ObserverResult[] = []
 
   const observers = events.map((method) => {
-    const callback = async (params: Params) => results.push({ method, params })
+    const callback:Handler = async (params: any) => results.push({ method, params })
 
     client.on(method, callback)
 

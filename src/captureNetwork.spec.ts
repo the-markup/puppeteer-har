@@ -1,12 +1,8 @@
 import fs from 'fs'
 import { promisify } from 'util';
 import puppeteer, { Browser } from "puppeteer"
-import { captureNetwork } from "./captureNetwork"
+import { captureNetwork } from "./captureNetwork.js"
 import { Har } from "har-format";
-
-// TODO: something's going on here where the first execution
-// doesn't terminate and Jest gets mad
-// probably has to do with the way 'browser' is created/closed
 
 const defaultPuppeteerBrowserOptions = {
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--ignore-certificate-errors', '--autoplay-policy=no-user-gesture-required'],
